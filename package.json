@@ -2,9 +2,9 @@
   "name": "nestjs-ddd",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": "CTolenk",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
@@ -57,7 +57,7 @@
       "json",
       "ts"
     ],
-    "rootDir": "src",
+    "rootDir": "test",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
