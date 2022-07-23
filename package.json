@@ -73,8 +73,10 @@
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
   },
-  "hooks": {
-    "pre-commit": "npm lint",
-    "pre-push": "jest"
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm lint",
+      "pre-push": "jest"
+    }
   }
 }
