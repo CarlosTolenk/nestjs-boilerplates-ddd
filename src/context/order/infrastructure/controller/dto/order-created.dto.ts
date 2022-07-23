@@ -1,6 +1,6 @@
 import { IsString, IsArray, IsObject, IsNotEmpty } from 'class-validator';
 
-class ShippingGroupsDto {
+export class ShippingGroupsDto {
   @IsString()
   productName: string;
 
@@ -8,7 +8,7 @@ class ShippingGroupsDto {
   price: number;
 }
 
-class Customer {
+export class CustomerDto {
   @IsString()
   name: string;
 
@@ -26,5 +26,5 @@ export class OrderCreatedDto {
 
   @IsObject()
   @IsNotEmpty()
-  customer: Customer;
+  customer: CustomerDto;
 }

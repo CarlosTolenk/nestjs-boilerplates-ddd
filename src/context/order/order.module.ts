@@ -1,9 +1,15 @@
 import { Module } from '@nestjs/common';
+import { CqrsModule } from '@nestjs/cqrs';
+
+// Handlers
+import { CommandHandlers } from './application/commands/handlers';
+
+// Controllers
 import { OrderCreatedController } from './infrastructure/controller/order-created.controller';
 
 @Module({
-  imports: [],
+  imports: [CqrsModule],
   controllers: [OrderCreatedController],
-  providers: [],
+  providers: [...CommandHandlers],
 })
 export class OrderModule {}
