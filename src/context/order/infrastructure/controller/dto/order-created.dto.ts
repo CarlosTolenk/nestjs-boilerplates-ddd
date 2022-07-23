@@ -1,9 +1,4 @@
-import {
-  IsString,
-  IsArray,
-  IsObject,
-  IsNotEmpty,
-} from 'class-validator';
+import { IsString, IsArray, IsObject, IsNotEmpty } from 'class-validator';
 
 class ShippingGroupsDto {
   @IsString()

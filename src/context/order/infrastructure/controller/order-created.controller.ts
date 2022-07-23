@@ -4,8 +4,6 @@ import { OrderCreatedDto } from './dto/order-created.dto';
 
 @Controller('order')
 export class OrderCreatedController {
-  constructor() {}
-
   @Put(':id')
   async orderCreated(
     @Param('id') id: string,

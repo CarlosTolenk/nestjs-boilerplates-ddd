@@ -46,6 +46,6 @@ describe('Order Created e2e', () => {
     return request(app.getHttpServer())
       .put('/order/60169eca-03f9-46bd-a2e2-699487cea423')
       .send(orderDTO)
-      .expect(HttpStatus.BAD_REQUEST)
+      .expect(HttpStatus.BAD_REQUEST);
   });
 });
