@@ -5,7 +5,7 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { CommandHandlers } from './application/commands/handlers';
 
 // Controllers
-import { OrderCreatedController } from './infrastructure/controller/order-created.controller';
+import { OrderCreatedController } from './interfaces/controller/order-created.controller';
 
 @Module({
   imports: [CqrsModule],
