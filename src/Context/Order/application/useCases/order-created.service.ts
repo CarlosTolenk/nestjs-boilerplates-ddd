@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { UseCases } from '../../../common/interfaces';
+import { UseCases } from '../../../Common/interfaces';
 
 @Injectable()
 export class OrderCreatedService implements UseCases<unknown> {
