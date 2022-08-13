@@ -4,12 +4,15 @@ import { CqrsModule } from '@nestjs/cqrs';
 // Handlers
 import { CommandHandlers } from './application/commands/handlers';
 
+// UseCase
+import { OrderCreated } from './application/useCases';
+
 // Controllers
-import { OrderCreatedController } from './interfaces/controller/order-created.controller';
+import { OrderCreatedController } from './interfaces/controller';
 
 @Module({
   imports: [CqrsModule],
   controllers: [OrderCreatedController],
-  providers: [...CommandHandlers],
+  providers: [OrderCreated, ...CommandHandlers],
 })
 export class OrderModule {}

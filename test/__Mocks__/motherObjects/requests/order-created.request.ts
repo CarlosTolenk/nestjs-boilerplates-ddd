@@ -1,4 +1,4 @@
-import { OrderCreatedDto } from '../../../../src/Context/Order/interfaces/controller/dto/order-created.dto';
+import { OrderCreatedDto } from '../../../../src/Context/Order/interfaces/controller/dtos/order-created.dto';
 
 export class MotherOrder {
   static createOrderRequest(): OrderCreatedDto {

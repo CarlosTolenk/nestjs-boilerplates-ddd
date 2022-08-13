@@ -2,7 +2,7 @@ import { Body, Controller, HttpStatus, Param, Put, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { CommandBus } from '@nestjs/cqrs';
 
-import { OrderCreatedDto } from './dto/order-created.dto';
+import { OrderCreatedDto } from './dtos/order-created.dto';
 import { OrderCreatedCommand } from '../../application/commands/implements';
 
 @Controller('order')

@@ -1,1 +1,1 @@
-export * from './order-created.command';
+export { OrderCreatedCommand } from './order-created.command';

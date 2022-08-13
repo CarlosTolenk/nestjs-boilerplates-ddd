@@ -1,3 +1,3 @@
 export interface UseCases<T> {
-  run(valueObject: T): Promise<void>;
+  run(valueObject: T): Promise<unknown>;
 }
