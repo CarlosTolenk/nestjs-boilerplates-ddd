@@ -1,7 +1,10 @@
 import { OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import { Connection, createConnection } from 'typeorm';
 
-class DBConfig {
+// Entities
+import { HealthEntity } from './Context/Health/infrastructure/enitity/health.entity';
+
+interface DBConfig {
   readonly host: string;
   readonly port: number;
   readonly database: string;
@@ -20,7 +23,7 @@ export class AppService implements OnModuleInit, OnModuleDestroy {
   }
 
   async onModuleInit(): Promise<void> {
-    const entities = [];
+    const entities = [HealthEntity];
 
     this.databaseConnection = await createConnection({
       ...this.loadDBConfig(),
@@ -37,7 +40,7 @@ export class AppService implements OnModuleInit, OnModuleDestroy {
       username: process.env.DATABASE_USER || 'postgres',
       password: process.env.DATABASE_PASSWORD || 'postgres',
       synchronize: 'true' === process.env.DATABASE_SYNC || true,
-      logging: 'true' === process.env.DATABASE_LOGGING || true,
+      logging: 'true' === process.env.DATABASE_LOGGING || false,
     };
   }
 

@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Logger, Module } from '@nestjs/common';
 import { TerminusModule } from '@nestjs/terminus';
 
 // Domain
@@ -8,7 +8,7 @@ import { HealthRepository } from './domain/health.repositoryts';
 import { HealthService } from './application/health.service';
 
 // infrastructure
-import { InMemoryHealthRepository } from './infrastructure/db/InMemoryHealthRepository';
+import { HealthPostgresRepository } from './infrastructure/repository/health-postgres.repository';
 
 // Interfaces
 import { HealthController } from './interfaces/healthController';
@@ -17,10 +17,11 @@ import { HealthController } from './interfaces/healthController';
   imports: [TerminusModule],
   controllers: [HealthController],
   providers: [
+    Logger,
     HealthService,
     {
       provide: HealthRepository,
-      useClass: InMemoryHealthRepository,
+      useClass: HealthPostgresRepository,
     },
   ],
 })

@@ -1,7 +1,7 @@
 import { HealthRepository } from '../../domain/health.repositoryts';
 import { Health } from '../../domain/health';
 
-export class InMemoryHealthRepository implements HealthRepository {
+export class HealthInMemoryRepository extends HealthRepository {
   check(): Promise<Health> {
     try {
       const health = new Health('up');

@@ -7,7 +7,7 @@ import { MotherOrder } from '../../__Mocks__/motherObjects/requests/order-create
 describe('Order Created e2e', () => {
   let app: INestApplication;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
@@ -15,6 +15,10 @@ describe('Order Created e2e', () => {
     app = moduleFixture.createNestApplication();
     app.useGlobalPipes(new ValidationPipe({ transform: true }));
     await app.init();
+  });
+
+  afterAll(async () => {
+    await app.close();
   });
 
   it('/(PUT) should create an order successfully ', () => {
