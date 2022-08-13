@@ -1,22 +1,22 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { HelloController } from '../../../../src/Context/hello/infrastructure/hello.controller';
-import { HelloService } from '../../../../src/Context/hello/application/hello.service';
+import { HealthController } from '../../../../src/Context/Health/interfaces/healthController';
+import { HealthService } from '../../../../src/Context/Health/application/health.service';
 
 describe('AppController', () => {
-  let appController: HelloController;
+  let appController: HealthController;
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
-      controllers: [HelloController],
-      providers: [HelloService],
+      controllers: [HealthController],
+      providers: [HealthService],
     }).compile();
 
-    appController = app.get<HelloController>(HelloController);
+    appController = app.get<HealthController>(HealthController);
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+    it('should return "Health World!"', () => {
+      expect(appController.getHello()).toBe('Health World!');
     });
   });
 });

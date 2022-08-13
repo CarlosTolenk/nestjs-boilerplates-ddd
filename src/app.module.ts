@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 
 // Contexts
-import { HelloModule } from './Context/hello/hello.module';
+import { HealthModule } from './Context/Health/healthModule';
 import { OrderModule } from './Context/Order/order.module';
 
 @Module({
-  imports: [HelloModule, OrderModule],
-  exports: [HelloModule, OrderModule],
+  imports: [HealthModule, OrderModule],
+  exports: [HealthModule, OrderModule],
 })
 export class AppModule {}

@@ -3,7 +3,7 @@ import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from '../../../src/app.module';
 
-describe('HelloController (e2e)', () => {
+describe('HealthController (e2e)', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
@@ -15,10 +15,22 @@ describe('HelloController (e2e)', () => {
     await app.init();
   });
 
-  it('/ (GET)', () => {
+  it('/liveness (GET)', () => {
     return request(app.getHttpServer())
-      .get('/')
+      .get('/liveness')
       .expect(200)
-      .expect('Hello World!');
+      .expect({ status: 'ok', info: {}, error: {}, details: {} });
+  });
+
+  it('/readiness (GET)', () => {
+    return request(app.getHttpServer())
+      .get('/health')
+      .expect(200)
+      .expect({
+        status: 'ok',
+        info: { database: { status: 'up' } },
+        error: {},
+        details: { database: { status: 'up' } },
+      });
   });
 });
