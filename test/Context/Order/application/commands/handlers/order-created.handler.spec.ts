@@ -9,6 +9,8 @@ import { OrderRepository } from '../../../../../../src/Context/Order/domain/Orde
 import { OrderPostgresRepository } from '../../../../../../src/Context/Order/infrastructure/repository/order-postgres.repository';
 import { OrderCreatedCommand } from '../../../../../../src/Context/Order/application/commands/implements';
 import { InvalidArgumentError } from '../../../../../../src/Context/Common/domain/exception';
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { OrderEntity } from '../../../../../../src/Context/Order/infrastructure/entity/order.entity';
 
 describe('OrderCreatedHandler', () => {
   let handler: OrderCreatedHandler;
@@ -19,10 +21,15 @@ describe('OrderCreatedHandler', () => {
       provide: OrderRepository,
       useClass: OrderPostgresRepository,
     };
+    const repositoryTypeORM: Provider = {
+      provide: getRepositoryToken(OrderEntity),
+      useValue: {},
+    };
     const providers: Provider[] = [
       OrderCreatedHandler,
       OrderCreated,
       repositoryProvider,
+      repositoryTypeORM,
     ];
     const moduleMetadata: ModuleMetadata = { providers };
     const testModule = await Test.createTestingModule(moduleMetadata).compile();

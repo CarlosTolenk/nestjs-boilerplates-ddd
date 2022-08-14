@@ -7,6 +7,9 @@ import { OrderRepository } from '../../../../../src/Context/Order/domain/Order.r
 import { OrderCreated } from '../../../../../src/Context/Order/application/useCase';
 import { OrderCreatedCommand } from '../../../../../src/Context/Order/application/commands/implements';
 import { MotherOrder } from '../../../../__Mocks__/MotherObjects/requests/order-created.request';
+import { Repository } from 'typeorm';
+import { OrderEntity } from '../../../../../src/Context/Order/infrastructure/entity/order.entity';
+import { getRepositoryToken } from '@nestjs/typeorm';
 
 describe('OrderCreated', () => {
   let service: OrderCreated;
@@ -17,8 +20,16 @@ describe('OrderCreated', () => {
       provide: OrderRepository,
       useClass: OrderRepositoryMock,
     };
+    const repositoryTypeORM: Provider = {
+      provide: getRepositoryToken(OrderEntity),
+      useValue: {},
+    };
+    const providers: Provider[] = [
+      OrderCreated,
+      repositoryProvider,
+      repositoryTypeORM,
+    ];
 
-    const providers: Provider[] = [OrderCreated, repositoryProvider];
     const moduleMetadata: ModuleMetadata = { providers };
     const testModule = await Test.createTestingModule(moduleMetadata).compile();
 
