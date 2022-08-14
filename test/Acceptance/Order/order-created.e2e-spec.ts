@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from '../../../src/app.module';
 import { HttpStatus, INestApplication, ValidationPipe } from '@nestjs/common';
-import * as request from 'supertest';
+import request from 'supertest';
 import { MotherOrder } from '../../__Mocks__/motherObjects/requests/order-created.request';
 
 describe('Order Created e2e', () => {

@@ -14,6 +14,9 @@ export class CustomerDto {
 
   @IsString()
   lastName: string;
+
+  @IsString()
+  phoneNumber: string;
 }
 
 export class OrderCreatedDto {
@@ -22,6 +25,7 @@ export class OrderCreatedDto {
   id: string;
 
   @IsArray()
+  @IsNotEmpty()
   shippingGroups: ShippingGroupsDto[];
 
   @IsObject()

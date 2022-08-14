@@ -1,7 +1,5 @@
-import { Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity } from 'typeorm';
+import { BaseEntity } from '../../../Common/infrastructure/entity/base.entity';
 
 @Entity()
-export class HealthEntity {
-  @PrimaryGeneratedColumn()
-  public id: number;
-}
+export class HealthEntity extends BaseEntity {}

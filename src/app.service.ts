@@ -3,6 +3,7 @@ import { Connection, createConnection } from 'typeorm';
 
 // Entities
 import { HealthEntity } from './Context/Health/infrastructure/enitity/health.entity';
+import { OrderEntity } from './Context/Order/infrastructure/entity/order.entity';
 
 interface DBConfig {
   readonly host: string;
@@ -23,7 +24,7 @@ export class AppService implements OnModuleInit, OnModuleDestroy {
   }
 
   async onModuleInit(): Promise<void> {
-    const entities = [HealthEntity];
+    const entities = [HealthEntity, OrderEntity];
 
     this.databaseConnection = await createConnection({
       ...this.loadDBConfig(),

@@ -10,14 +10,22 @@ export class MotherOrder {
           price: 150.45,
         },
       ],
-      customer: { name: 'Carlos', lastName: 'Tolentino' },
+      customer: {
+        name: 'Carlos',
+        lastName: 'Tolentino',
+        phoneNumber: '809-xxx-5656',
+      },
     };
   }
 
   static createOrderRequestWithErrors(): Partial<OrderCreatedDto> {
     return {
       id: '60169eca-03f9-46bd-a2e2-699487cea423',
-      customer: { name: 'Carlos', lastName: 'Tolentino' },
+      customer: {
+        name: 'Carlos',
+        lastName: 'Tolentino',
+        phoneNumber: '809-xxx-5656',
+      },
     };
   }
 }
