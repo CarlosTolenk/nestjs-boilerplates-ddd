@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 
 // Contexts
-import { HealthModule } from './Context/Health/healthModule';
+import { HealthModule } from './Context/Health/health.module';
 import { OrderModule } from './Context/Order/order.module';
 import { AppService } from './app.service';
 

@@ -2,7 +2,7 @@ import { OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import { Connection, createConnection } from 'typeorm';
 
 // Entities
-import { HealthEntity } from './Context/Health/infrastructure/enitity/health.entity';
+import { HealthEntity } from './Context/Health/infrastructure/entity/health.entity';
 import { OrderEntity } from './Context/Order/infrastructure/entity/order.entity';
 
 interface DBConfig {

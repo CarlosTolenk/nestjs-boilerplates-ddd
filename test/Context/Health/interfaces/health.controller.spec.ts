@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { TerminusModule } from '@nestjs/terminus';
 
-import { HealthController } from '../../../../src/Context/Health/interfaces/healthController';
+import { HealthController } from '../../../../src/Context/Health/interfaces/health.controller';
 import { HealthService } from '../../../../src/Context/Health/application/health.service';
 import { HealthRepository } from '../../../../src/Context/Health/domain/health.repositoryts';
 import { Health } from '../../../../src/Context/Health/domain/health';

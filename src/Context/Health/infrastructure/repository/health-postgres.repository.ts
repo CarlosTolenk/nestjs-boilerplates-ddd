@@ -2,7 +2,7 @@ import { getRepository } from 'typeorm';
 
 import { HealthRepository } from '../../domain/health.repositoryts';
 import { Health } from '../../domain/health';
-import { HealthEntity } from '../enitity/health.entity';
+import { HealthEntity } from '../entity/health.entity';
 
 export class HealthPostgresRepository extends HealthRepository {
   async check(): Promise<Health> {

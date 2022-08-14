@@ -5,10 +5,10 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { OrderCreatedController } from './interfaces/controller';
 
 // Infrastructures
-import { infrastructures } from './infrastructure/provider';
+import { infrastructures } from './infrastructure/index.provider';
 
 // Applications
-import { applications } from './application/provider';
+import { applications } from './application/index.provider';
 
 @Module({
   imports: [CqrsModule],

@@ -11,7 +11,7 @@ import { HealthService } from './application/health.service';
 import { HealthPostgresRepository } from './infrastructure/repository/health-postgres.repository';
 
 // Interfaces
-import { HealthController } from './interfaces/healthController';
+import { HealthController } from './interfaces/health.controller';
 
 @Module({
   imports: [TerminusModule],
