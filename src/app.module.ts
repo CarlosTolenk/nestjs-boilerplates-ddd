@@ -8,6 +8,5 @@ import { AppService } from './app.service';
 @Module({
   imports: [HealthModule, OrderModule],
   providers: [AppService],
-  exports: [HealthModule, OrderModule],
 })
 export class AppModule {}
