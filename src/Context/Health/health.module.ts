@@ -12,9 +12,11 @@ import { HealthPostgresRepository } from './infrastructure/repository/health-pos
 
 // Interfaces
 import { HealthController } from './interfaces/health.controller';
+import { HealthEntity } from './infrastructure/entity/health.entity';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [TerminusModule],
+  imports: [TerminusModule, TypeOrmModule.forFeature([HealthEntity])],
   controllers: [HealthController],
   providers: [
     Logger,

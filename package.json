@@ -77,7 +77,7 @@
     "collectCoverageFrom": [
       "src/Context/**"
     ],
-    "coverageDirectory": "../coverage",
+    "coverageDirectory": "./coverage",
     "testEnvironment": "node",
     "collectCoverage": true,
     "verbose": true,
