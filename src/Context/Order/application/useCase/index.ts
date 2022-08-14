@@ -1,1 +1,1 @@
-export { OrderCreated } from './order-created';
+export { OrderCreated } from './order-created.useCase';

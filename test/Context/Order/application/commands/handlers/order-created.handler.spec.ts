@@ -1,12 +1,13 @@
 import { ModuleMetadata, Provider } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 
+import { MotherOrder } from '../../../../../__Mocks__/MotherObjects/requests/order-created.request';
+
 import { OrderCreatedHandler } from '../../../../../../src/Context/Order/application/commands/handlers/order-created.handler';
 import { OrderCreated } from '../../../../../../src/Context/Order/application/useCase';
 import { OrderRepository } from '../../../../../../src/Context/Order/domain/Order.repository';
 import { OrderPostgresRepository } from '../../../../../../src/Context/Order/infrastructure/repository/order-postgres.repository';
 import { OrderCreatedCommand } from '../../../../../../src/Context/Order/application/commands/implements';
-import { MotherOrder } from '../../../../../__Mocks__/motherObjects/requests/order-created.request';
 import { InvalidArgumentError } from '../../../../../../src/Context/Common/domain/exception';
 
 describe('OrderCreatedHandler', () => {

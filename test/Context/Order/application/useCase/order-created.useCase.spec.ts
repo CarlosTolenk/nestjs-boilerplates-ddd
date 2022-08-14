@@ -1,0 +1,47 @@
+import { ModuleMetadata, Provider } from '@nestjs/common';
+import { Test } from '@nestjs/testing';
+
+import { OrderRepositoryMock } from '../../../../__Mocks__/Order/OrderRepositoryMock';
+
+import { OrderRepository } from '../../../../../src/Context/Order/domain/Order.repository';
+import { OrderCreated } from '../../../../../src/Context/Order/application/useCase';
+import { OrderCreatedCommand } from '../../../../../src/Context/Order/application/commands/implements';
+import { MotherOrder } from '../../../../__Mocks__/MotherObjects/requests/order-created.request';
+
+describe('OrderCreated', () => {
+  let service: OrderCreated;
+  let repository: OrderRepository;
+
+  beforeEach(async () => {
+    const repositoryProvider: Provider = {
+      provide: OrderRepository,
+      useClass: OrderRepositoryMock,
+    };
+
+    const providers: Provider[] = [OrderCreated, repositoryProvider];
+    const moduleMetadata: ModuleMetadata = { providers };
+    const testModule = await Test.createTestingModule(moduleMetadata).compile();
+
+    service = testModule.get<OrderCreated>(OrderCreated);
+    repository = testModule.get<OrderRepository>(OrderRepository);
+  });
+
+  it('should be defined', () => {
+    expect(repository).toBeDefined();
+    expect(service).toBeDefined();
+  });
+
+  describe('run', () => {
+    it('should execute method run correctly', async () => {
+      repository.persist = jest.fn().mockResolvedValue(Promise.resolve());
+      const command = new OrderCreatedCommand(MotherOrder.createOrderRequest());
+      const { orderId, orderStatus, orderCustomer } =
+        MotherOrder.createOrderValueObjectFromDTO(command);
+
+      await service.run({ orderId, orderStatus, orderCustomer });
+
+      expect(repository.persist).toBeCalledTimes(1);
+      expect(repository.persist).toHaveReturnedWith(Promise.resolve());
+    });
+  });
+});
