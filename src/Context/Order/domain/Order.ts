@@ -1,5 +1,10 @@
 import { AggregateDomainRoot } from '../../Common/domain/AggregateRoot';
-import { OrderCustomer, OrderId, OrderStatus } from './valueObject';
+import {
+  OrderCustomer,
+  OrderId,
+  OrderStatus,
+  StatusOrderAvailable,
+} from './valueObject';
 
 export class Order extends AggregateDomainRoot {
   readonly id: OrderId;
@@ -37,5 +42,19 @@ export class Order extends AggregateDomainRoot {
         phoneNumber: this.customer.phoneNumber.value,
       },
     };
+  }
+
+  static fromPrimitives(plainData: {
+    orderId: string;
+    orderStatus: string;
+    orderCustomer: { name: string; lastName: string; phoneNumber: string };
+  }): Order {
+    const status = StatusOrderAvailable[plainData.orderStatus];
+    const { name, lastName, phoneNumber } = plainData.orderCustomer;
+    return new Order(
+      new OrderId(plainData.orderId),
+      new OrderStatus(status),
+      new OrderCustomer(name, lastName, phoneNumber),
+    );
   }
 }

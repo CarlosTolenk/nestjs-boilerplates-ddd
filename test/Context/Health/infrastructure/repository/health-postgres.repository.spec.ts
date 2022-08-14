@@ -21,11 +21,11 @@ describe('HealthPostgresRepository', () => {
       provide: HealthRepository,
       useClass: HealthPostgresRepository,
     };
-    const repositoryTypeROM: Provider = {
+    const repositoryTypeORM: Provider = {
       provide: tokenRepository,
       useValue: {},
     };
-    const providers: Provider[] = [repositoryProvider, repositoryTypeROM];
+    const providers: Provider[] = [repositoryProvider, repositoryTypeORM];
     const importsMock: any[] = [
       HealthModule,
       TypeOrmModule.forRoot({

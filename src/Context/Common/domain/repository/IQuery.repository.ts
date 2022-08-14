@@ -1,3 +1,3 @@
-export interface IQueryRepository<T, TEntity> {
-  find(param: T): TEntity;
+export interface IQueryRepository<T> {
+  findById(id: string): Promise<T | null>;
 }
