@@ -4,6 +4,7 @@ import { getRepositoryToken, TypeOrmModule } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { MotherOrder } from '../../../../__Mocks__/MotherObjects/requests/order-created.request';
+import { Config } from '../../../../__Mocks__/Common/config';
 
 import { OrderRepository } from '../../../../../src/Context/Order/domain/Order.repository';
 import { OrderEntity } from '../../../../../src/Context/Order/infrastructure/entity/order.entity';
@@ -32,14 +33,9 @@ describe('OrderPostgresRepository', () => {
     const importsMock: any[] = [
       OrderModule,
       TypeOrmModule.forRoot({
+        ...Config.dbTestConnection(),
         type: 'postgres',
-        host: 'localhost',
-        port: 54321,
-        username: 'postgres',
-        password: 'postgres',
-        database: 'picking',
         entities: [OrderEntity],
-        synchronize: true,
       }),
     ];
     const moduleMetadata: ModuleMetadata = { providers, imports: importsMock };

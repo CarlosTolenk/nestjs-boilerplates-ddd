@@ -3,6 +3,8 @@ import { Test } from '@nestjs/testing';
 import { getRepositoryToken, TypeOrmModule } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
+import { Config } from '../../../../__Mocks__/Common/config';
+
 import { HealthRepository } from '../../../../../src/Context/Health/domain/health.repositoryts';
 import { HealthPostgresRepository } from '../../../../../src/Context/Health/infrastructure/repository/health-postgres.repository';
 
@@ -29,14 +31,9 @@ describe('HealthPostgresRepository', () => {
     const importsMock: any[] = [
       HealthModule,
       TypeOrmModule.forRoot({
+        ...Config.dbTestConnection(),
         type: 'postgres',
-        host: 'localhost',
-        port: 54321,
-        username: 'postgres',
-        password: 'postgres',
-        database: 'picking',
         entities: [HealthEntity],
-        synchronize: true,
       }),
     ];
     const moduleMetadata: ModuleMetadata = { providers, imports: importsMock };
