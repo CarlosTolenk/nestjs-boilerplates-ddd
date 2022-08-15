@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import request from 'supertest';
 import { AppModule } from '../../../src/app.module';
 import { OrderEntity } from '../../../src/Context/Order/infrastructure/entity/order.entity';
+import { Config } from '../../__Mocks__/Common/config';
 
 describe('HealthController (e2e)', () => {
   let app: INestApplication;
@@ -13,14 +14,9 @@ describe('HealthController (e2e)', () => {
       imports: [
         AppModule,
         TypeOrmModule.forRoot({
+          ...Config.dbTestConnection(),
           type: 'postgres',
-          host: 'localhost',
-          port: 54321,
-          username: 'postgres',
-          password: 'postgres',
-          database: 'picking',
           entities: [OrderEntity],
-          synchronize: true,
         }),
       ],
     }).compile();

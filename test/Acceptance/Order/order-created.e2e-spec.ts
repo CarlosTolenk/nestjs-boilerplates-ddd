@@ -7,6 +7,8 @@ import { MotherOrder } from '../../__Mocks__/MotherObjects/requests/order-create
 
 import { OrderEntity } from '../../../src/Context/Order/infrastructure/entity/order.entity';
 import { AppModule } from '../../../src/app.module';
+import { AppService } from '../../../src/app.service';
+import { Config } from '../../__Mocks__/Common/config';
 
 describe('Order Created e2e', () => {
   let app: INestApplication;
@@ -16,14 +18,9 @@ describe('Order Created e2e', () => {
       imports: [
         AppModule,
         TypeOrmModule.forRoot({
+          ...Config.dbTestConnection(),
           type: 'postgres',
-          host: 'localhost',
-          port: 54321,
-          username: 'postgres',
-          password: 'postgres',
-          database: 'picking',
           entities: [OrderEntity],
-          synchronize: true,
         }),
       ],
     }).compile();
