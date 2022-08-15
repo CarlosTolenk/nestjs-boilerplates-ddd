@@ -42,6 +42,23 @@ export class MotherOrder {
     };
   }
 
+  static createOrderRequestWithNameInvalid(): OrderCreatedDto {
+    return {
+      id: '60169eca-03f9-46bd-a2e2-699487cea423',
+      shippingGroups: [
+        {
+          productName: 'the real product',
+          price: 150.45,
+        },
+      ],
+      customer: {
+        name: '',
+        lastName: 'Tolentino',
+        phoneNumber: '809-xxx-5656',
+      },
+    };
+  }
+
   static createOrderRequestWithErrors(): Partial<OrderCreatedDto> {
     return {
       id: '60169eca-03f9-46bd-a2e2-699487cea423',

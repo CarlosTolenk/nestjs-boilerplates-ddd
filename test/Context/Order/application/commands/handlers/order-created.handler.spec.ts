@@ -67,5 +67,18 @@ describe('OrderCreatedHandler', () => {
         ),
       );
     });
+
+    it('should execute OrderCreatedCommand wrong when customerName is empty', async () => {
+      service.run = jest.fn().mockResolvedValue(Promise.resolve());
+      const command = new OrderCreatedCommand(
+        MotherOrder.createOrderRequestWithNameInvalid(),
+      );
+
+      await expect(handler.execute(command)).rejects.toEqual(
+        new InvalidArgumentError(
+          `<CustomerName> does not allow the value empty`,
+        ),
+      );
+    });
   });
 });
