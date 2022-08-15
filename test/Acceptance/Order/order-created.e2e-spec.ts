@@ -1,15 +1,31 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AppModule } from '../../../src/app.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { HttpStatus, INestApplication, ValidationPipe } from '@nestjs/common';
 import request from 'supertest';
+
 import { MotherOrder } from '../../__Mocks__/MotherObjects/requests/order-created.request';
+
+import { OrderEntity } from '../../../src/Context/Order/infrastructure/entity/order.entity';
+import { AppModule } from '../../../src/app.module';
 
 describe('Order Created e2e', () => {
   let app: INestApplication;
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
+      imports: [
+        AppModule,
+        TypeOrmModule.forRoot({
+          type: 'postgres',
+          host: 'localhost',
+          port: 54321,
+          username: 'postgres',
+          password: 'postgres',
+          database: 'picking',
+          entities: [OrderEntity],
+          synchronize: true,
+        }),
+      ],
     }).compile();
 
     app = moduleFixture.createNestApplication();
