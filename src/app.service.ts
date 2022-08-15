@@ -15,7 +15,7 @@ interface DBConfig {
   readonly logging: boolean;
 }
 
-export class AppService implements OnModuleInit, OnModuleDestroy {
+export class AppService {
   private databaseConnection?: Connection | void;
 
   static port(): number {
@@ -23,34 +23,34 @@ export class AppService implements OnModuleInit, OnModuleDestroy {
     return PORT && Number(PORT) ? Number(PORT) : 3000;
   }
 
-  async onModuleInit(): Promise<void> {
-    const entities = [HealthEntity, OrderEntity];
+  // async onModuleInit(): Promise<void> {
+  //   const entities = [HealthEntity, OrderEntity];
+  //
+  //   this.databaseConnection = await createConnection({
+  //     ...this.loadDBConfig(),
+  //     type: 'postgres',
+  //     entities,
+  //   }).catch((error: Error) => this.failToConnectDatabase(error));
+  // }
 
-    this.databaseConnection = await createConnection({
-      ...this.loadDBConfig(),
-      type: 'postgres',
-      entities,
-    }).catch((error: Error) => this.failToConnectDatabase(error));
-  }
+  // private loadDBConfig(): DBConfig {
+  //   return {
+  //     host: process.env.DATABASE_HOST || 'localhost',
+  //     port: parseInt(process.env.DATABASE_PORT ?? '54321', 10) || 54321,
+  //     database: process.env.DATABASE_NAME || 'picking',
+  //     username: process.env.DATABASE_USER || 'postgres',
+  //     password: process.env.DATABASE_PASSWORD || 'postgres',
+  //     synchronize: 'true' === process.env.DATABASE_SYNC || true,
+  //     logging: 'true' === process.env.DATABASE_LOGGING || false,
+  //   };
+  // }
 
-  private loadDBConfig(): DBConfig {
-    return {
-      host: process.env.DATABASE_HOST || 'localhost',
-      port: parseInt(process.env.DATABASE_PORT ?? '54321', 10) || 54321,
-      database: process.env.DATABASE_NAME || 'picking',
-      username: process.env.DATABASE_USER || 'postgres',
-      password: process.env.DATABASE_PASSWORD || 'postgres',
-      synchronize: 'true' === process.env.DATABASE_SYNC || true,
-      logging: 'true' === process.env.DATABASE_LOGGING || false,
-    };
-  }
-
-  private failToConnectDatabase(error: Error): void {
-    console.error(error);
-    process.exit(1);
-  }
-
-  async onModuleDestroy(): Promise<void> {
-    if (this.databaseConnection) await this.databaseConnection.close();
-  }
+  // private failToConnectDatabase(error: Error): void {
+  //   console.error(error);
+  //   process.exit(1);
+  // }
+  //
+  // async onModuleDestroy(): Promise<void> {
+  //   if (this.databaseConnection) await this.databaseConnection.close();
+  // }
 }
