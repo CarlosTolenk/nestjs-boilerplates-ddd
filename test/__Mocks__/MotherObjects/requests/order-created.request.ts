@@ -1,3 +1,4 @@
+import { Chance } from 'chance';
 import { OrderCreatedDto } from '../../../../src/Context/Order/interfaces/controller/dtos/order-created.dto';
 import {
   OrderCustomer,
@@ -43,18 +44,19 @@ export class MotherOrder {
   }
 
   static createOrderRequestWithNameInvalid(): OrderCreatedDto {
+    const change = new Chance();
     return {
-      id: '60169eca-03f9-46bd-a2e2-699487cea423',
+      id: change.guid({ version: 4 }),
       shippingGroups: [
         {
-          productName: 'the real product',
-          price: 150.45,
+          productName: change.name(),
+          price: change.integer(),
         },
       ],
       customer: {
         name: '',
-        lastName: 'Tolentino',
-        phoneNumber: '809-xxx-5656',
+        lastName: change.last(),
+        phoneNumber: change.phone(),
       },
     };
   }
@@ -73,6 +75,20 @@ export class MotherOrder {
   static createOrderValueObjectFromDTO(command: OrderCreatedCommand): any {
     const orderId = new OrderId(command.orderId);
     const orderStatus = new OrderStatus(StatusOrderAvailable.RECEIVED);
+    const orderCustomer = new OrderCustomer(
+      command.customer.name,
+      command.customer.lastName,
+      command.customer.phoneNumber,
+    );
+
+    return { orderId, orderStatus, orderCustomer };
+  }
+
+  static createOrderValueObjectFromDTOWithErrorStatus(
+    command: OrderCreatedCommand,
+  ): any {
+    const orderId = new OrderId(command.orderId);
+    const orderStatus = new OrderStatus(StatusOrderAvailable.CANCELLED);
     const orderCustomer = new OrderCustomer(
       command.customer.name,
       command.customer.lastName,
