@@ -51,4 +51,10 @@ describe('Order Created e2e', () => {
       .send(orderDTO)
       .expect(HttpStatus.BAD_REQUEST);
   });
+
+  it('/(GET) should return an order by id', () => {
+    return request(app.getHttpServer())
+      .get('/order/60169eca-03f9-46bd-a2e2-699487cea423')
+      .expect([]);
+  });
 });

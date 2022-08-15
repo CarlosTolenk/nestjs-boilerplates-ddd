@@ -3,7 +3,10 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 // Controllers
-import { OrderCreatedController } from './interfaces/controller';
+import {
+  OrderCreatedController,
+  OrderGetController,
+} from './interfaces/controller';
 
 // Infrastructures
 import { infrastructures } from './infrastructure/index.provider';
@@ -14,7 +17,7 @@ import { applications } from './application/index.provider';
 
 @Module({
   imports: [CqrsModule, TypeOrmModule.forFeature([OrderEntity])],
-  controllers: [OrderCreatedController],
+  controllers: [OrderCreatedController, OrderGetController],
   providers: [...applications, ...infrastructures],
 })
 export class OrderModule {}
