@@ -9,7 +9,7 @@ import {
   StatusOrderAvailable,
 } from '../../domain/valueObject';
 import { Order } from '../../domain/Order';
-import { OrderCreateStatusDiffReceived } from '../../domain/exception/OrderCreateStatusDiffReceived';
+import { OrderCreateStatusDiffReceived } from '../../domain/exception';
 
 type Params = {
   orderId: OrderId;
