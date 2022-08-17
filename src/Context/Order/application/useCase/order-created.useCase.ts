@@ -19,7 +19,7 @@ type Params = {
 
 @Injectable()
 export class OrderCreated implements UseCases<Params> {
-  constructor(private repository: OrderRepository) {}
+  constructor(private readonly repository: OrderRepository) {}
 
   async run({ orderId, orderStatus, orderCustomer }: Params): Promise<void> {
     this.ensureOrderStatusIsReceived(orderStatus);

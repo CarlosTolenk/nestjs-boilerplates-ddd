@@ -7,8 +7,9 @@ import { OrderCreatedHandler } from './commands/handlers/order-created.handler';
 import { OrderGetByIdHandler } from './queries/handlers/order-get-by-id.handler';
 
 // Use Cases
-import { OrderCreated } from './useCase';
+import { OrderCreated, OrderGetById } from './useCase';
 
 const CommandHandlers = [OrderCreatedHandler, OrderGetByIdHandler];
+const UseCases = [OrderGetById, OrderCreated];
 
-export const applications: Provider[] = [OrderCreated, ...CommandHandlers];
+export const applications: Provider[] = [...UseCases, ...CommandHandlers];

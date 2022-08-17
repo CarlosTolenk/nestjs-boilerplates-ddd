@@ -12,7 +12,7 @@ import {
 export class OrderCreatedHandler
   implements ICommandHandler<OrderCreatedCommand>
 {
-  constructor(private service: OrderCreated) {}
+  constructor(private readonly service: OrderCreated) {}
 
   async execute(command: OrderCreatedCommand): Promise<void> {
     try {

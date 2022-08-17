@@ -27,9 +27,7 @@ export class Order extends AggregateDomainRoot {
     status: OrderStatus,
     customer: OrderCustomer,
   ): Order {
-    const order = new Order(id, status, customer);
-    order.record(new Event('ds'));
-    return order;
+    return new Order(id, status, customer);
   }
 
   toPrimitives() {

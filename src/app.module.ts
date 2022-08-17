@@ -15,7 +15,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         type: 'postgres',
         host: process.env.DATABASE_HOST || 'localhost',
         port: parseInt(process.env.DATABASE_PORT ?? '54321', 10) || 54321,
-        database: process.env.DATABASE_NAME || 'picking',
+        database: process.env.DATABASE_NAME || 'picking-v1',
         username: process.env.DATABASE_USER || 'postgres',
         password: process.env.DATABASE_PASSWORD || 'postgres',
         synchronize: 'true' === process.env.DATABASE_SYNC || true,
