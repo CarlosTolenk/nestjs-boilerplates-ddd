@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 
 export class NotFoundOrderById extends HttpException {
-  constructor(message: string) {
-    super(message, HttpStatus.NOT_FOUND);
+  constructor(orderId: string) {
+    super(`Order not exist with ${orderId}`, HttpStatus.NOT_FOUND);
   }
 }

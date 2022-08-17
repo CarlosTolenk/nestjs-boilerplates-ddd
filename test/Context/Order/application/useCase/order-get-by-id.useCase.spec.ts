@@ -6,6 +6,8 @@ import { OrderGetById } from '../../../../../src/Context/Order/application/useCa
 import { OrderRepository } from '../../../../../src/Context/Order/domain/Order.repository';
 import { OrderRepositoryMock } from '../../../../__Mocks__/Order/OrderRepositoryMock';
 import { OrderEntity } from '../../../../../src/Context/Order/infrastructure/entity/order.entity';
+import { Uuid } from '../../../../../src/Context/Common/domain/valueObject/Uuid';
+import { NotFoundOrderById } from '../../../../../src/Context/Order/domain/exception';
 
 describe('OrderGetById', () => {
   let service: OrderGetById;
@@ -39,8 +41,13 @@ describe('OrderGetById', () => {
   });
 
   describe('run', () => {
-    it('should execute method run correctly', async () => {
-      repository.findById = jest.fn().mockResolvedValue(Promise.resolve());
+    it('should execute method run correctly when order not exist', async () => {
+      repository.findById = jest.fn().mockResolvedValue(Promise.resolve(null));
+      const orderId = Uuid.random();
+
+      await expect(service.run(orderId)).rejects.toThrowError(
+        new NotFoundOrderById(orderId.value),
+      );
     });
   });
 });
