@@ -12,6 +12,7 @@ import { NotFoundOrderById } from '../../../../../../src/Context/Order/domain/ex
 import { Uuid } from '../../../../../../src/Context/Common/domain/valueObject/Uuid';
 import { OrderId } from '../../../../../../src/Context/Order/domain/valueObject';
 import { InvalidArgumentError } from '../../../../../../src/Context/Common/domain/exception';
+import { MotherOrder } from '../../../../../__Mocks__/MotherObjects/requests/order-created.request';
 
 describe('OrderGetByIdHandler', () => {
   let handler: OrderGetByIdHandler;
@@ -46,17 +47,15 @@ describe('OrderGetByIdHandler', () => {
 
   describe('execute', () => {
     it('should execute the query OrderGetById correctly and return a orderResult', async () => {
-      const expected = {
-        id: 'id',
-        status: 'status',
-      };
+      const expected = MotherOrder.createOrder();
       service.run = jest.fn().mockResolvedValue(Promise.resolve(expected));
       const orderId = new OrderId(Uuid.random().value);
       const query = new OrderGetByIdQuery(orderId.value);
 
       const result = await handler.execute(query);
 
-      expect(result).toEqual(expected);
+      expect(result.id).toBeDefined();
+      expect(result.status).toBeDefined();
       expect(service.run).toBeCalledTimes(1);
       expect(service.run).toHaveBeenCalledWith(orderId);
     });

@@ -7,6 +7,7 @@ import {
   StatusOrderAvailable,
 } from '../../../../src/Context/Order/domain/valueObject';
 import { OrderCreatedCommand } from '../../../../src/Context/Order/application/commands/implements';
+import { Order } from '../../../../src/Context/Order/domain/Order';
 
 export class MotherOrder {
   static createOrderRequest(): OrderCreatedDto {
@@ -96,5 +97,13 @@ export class MotherOrder {
     );
 
     return { orderId, orderStatus, orderCustomer };
+  }
+
+  static createOrder(): Order {
+    const request = MotherOrder.createOrderRequest();
+    const command = new OrderCreatedCommand(request);
+    const { orderId, orderStatus, orderCustomer } =
+      MotherOrder.createOrderValueObjectFromDTO(command);
+    return Order.create(orderId, orderStatus, orderCustomer);
   }
 }
