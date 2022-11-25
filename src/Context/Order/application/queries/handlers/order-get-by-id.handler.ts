@@ -2,6 +2,7 @@ import { IQueryHandler, IQueryResult, QueryHandler } from '@nestjs/cqrs';
 import { OrderGetByIdQuery } from '../implements/order-get-by-id.query';
 import { OrderGetById } from '../../useCase';
 import { OrderId } from '../../../domain/valueObject';
+import { Order } from '../../../domain/Order';
 
 export class FindOrderByIdResult implements IQueryResult {
   readonly id: string = '';
@@ -17,10 +18,14 @@ export class OrderGetByIdHandler
   async execute(query: OrderGetByIdQuery): Promise<FindOrderByIdResult> {
     try {
       const orderId = new OrderId(query.id);
-      const result = await this.service.run(orderId);
-      return { id: 'id', status: 'status' };
+      const order = await this.service.run(orderId);
+      return this.domainToQuery(order);
     } catch (error) {
       throw error;
     }
+  }
+
+  private domainToQuery(order: Order): FindOrderByIdResult {
+    return { id: order.id.value, status: order.status.value };
   }
 }
