@@ -1,5 +1,5 @@
 import { Chance } from 'chance';
-import { OrderCreatedDto } from '../../../../src/Context/Order/interfaces/controller/dtos/order-created.dto';
+import { OrderCreatedDto } from '../../../../src/Context/Order/infrastructure/interfaces/controller/dtos/order-created.dto';
 import {
   OrderCustomer,
   OrderId,

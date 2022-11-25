@@ -3,7 +3,7 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { createResponse, MockResponse } from 'node-mocks-http';
 import { Response } from 'express';
 
-import { OrderGetController } from '../../../../../src/Context/Order/interfaces/controller';
+import { OrderGetController } from '../../../../../src/Context/Order/infrastructure/interfaces/controller';
 import { OrderGetByIdQuery } from '../../../../../src/Context/Order/application/queries/implements/order-get-by-id.query';
 import { Uuid } from '../../../../../src/Context/Common/domain/valueObject/Uuid';
 

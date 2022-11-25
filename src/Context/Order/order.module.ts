@@ -6,7 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import {
   OrderCreatedController,
   OrderGetController,
-} from './interfaces/controller';
+} from './infrastructure/interfaces/controller';
 
 // Infrastructures
 import { infrastructures } from './infrastructure/index.provider';

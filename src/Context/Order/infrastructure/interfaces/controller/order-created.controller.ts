@@ -3,7 +3,7 @@ import { Response } from 'express';
 import { CommandBus } from '@nestjs/cqrs';
 
 import { OrderCreatedDto } from './dtos/order-created.dto';
-import { OrderCreatedCommand } from '../../application/commands/implements';
+import { OrderCreatedCommand } from '../../../application/commands/implements';
 
 @Controller('order')
 export class OrderCreatedController {

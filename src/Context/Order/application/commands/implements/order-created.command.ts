@@ -2,7 +2,7 @@ import {
   CustomerDto,
   OrderCreatedDto,
   ShippingGroupsDto,
-} from '../../../interfaces/controller/dtos/order-created.dto';
+} from '../../../infrastructure/interfaces/controller/dtos/order-created.dto';
 
 export class OrderCreatedCommand {
   readonly orderId: string;

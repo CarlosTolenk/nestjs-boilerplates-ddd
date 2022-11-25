@@ -1,7 +1,7 @@
 import { Controller, Get, HttpStatus, Param, Res } from '@nestjs/common';
 import { QueryBus } from '@nestjs/cqrs';
 
-import { OrderGetByIdQuery } from '../../application/queries/implements/order-get-by-id.query';
+import { OrderGetByIdQuery } from '../../../application/queries/implements/order-get-by-id.query';
 import { Response } from 'express';
 
 @Controller('order')
