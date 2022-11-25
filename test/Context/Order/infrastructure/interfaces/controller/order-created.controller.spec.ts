@@ -3,9 +3,9 @@ import { Response } from 'express';
 import { CqrsModule } from '@nestjs/cqrs';
 import { createResponse, MockResponse } from 'node-mocks-http';
 
-import { OrderCreatedController } from '../../../../../src/Context/Order/infrastructure/interfaces/controller';
-import { MotherOrder } from '../../../../__Mocks__/MotherObjects/requests/order-created.request';
-import { OrderCreatedCommand } from '../../../../../src/Context/Order/application/commands/implements';
+import { OrderCreatedController } from '../../../../../../src/Context/Order/infrastructure/interfaces/controller';
+import { MotherOrder } from '../../../../../__Mocks__/MotherObjects/requests/order-created.request';
+import { OrderCreatedCommand } from '../../../../../../src/Context/Order/application/commands/implements';
 
 describe('OrderCreatedController', () => {
   let controller: OrderCreatedController;
